@@ -14,12 +14,7 @@ module.exports = [
       },
     },
   },
-  {
-    name: "strapi::body",
-    config: {
-      jsonLimit: "50mb",
-    },
-  },
+
   "strapi::cors",
   "strapi::poweredBy",
   "strapi::logger",
