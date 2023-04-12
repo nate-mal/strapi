@@ -19,6 +19,7 @@
     "pg": "8.8.0",
     "@strapi/plugin-graphql": "^4.6.2",
     "strapi-plugin-meilisearch": "^0.9.1",
+    "strapi-plugin-import-export-entries": "^1.18.1",
     "stripe": "^11.15.0"
   },
   "author": {
