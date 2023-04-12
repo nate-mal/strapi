@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "principal_categories",
+  "info": {
+    "singularName": "principal-category",
+    "pluralName": "principal-categories",
+    "displayName": "Principal Category",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "ro_name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "de_name": {
+      "type": "string",
+      "unique": true
+    },
+    "main_categories": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::main-category.main-category",
+      "mappedBy": "principal_category"
+    }
+  }
+}

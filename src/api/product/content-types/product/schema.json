@@ -1,0 +1,112 @@
+{
+  "kind": "collectionType",
+  "collectionName": "products",
+  "info": {
+    "singularName": "product",
+    "pluralName": "products",
+    "displayName": "Product",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "art_id": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "richtext"
+    },
+    "availability": {
+      "type": "enumeration",
+      "enum": [
+        "in-stock-ex",
+        "sold-out",
+        "on-demand",
+        "undefined-stock"
+      ],
+      "required": true
+    },
+    "delivery_time": {
+      "type": "string",
+      "required": false
+    },
+    "profit": {
+      "required": false,
+      "default": 35,
+      "min": 0,
+      "type": "integer",
+      "private": true
+    },
+    "discount": {
+      "type": "integer",
+      "max": 100,
+      "min": 1
+    },
+    "images_nr": {
+      "type": "integer"
+    },
+    "vendor_product_id": {
+      "type": "string",
+      "private": true
+    },
+    "vendor_product_price": {
+      "type": "decimal",
+      "required": false,
+      "private": true
+    },
+    "vendor_product_location": {
+      "type": "string",
+      "required": true,
+      "private": true
+    },
+    "vendor_product_name": {
+      "type": "string",
+      "private": true
+    },
+    "vendor_product_description": {
+      "type": "text",
+      "private": true
+    },
+    "vendor_product_delivery_info": {
+      "type": "string",
+      "required": true,
+      "private": true
+    },
+    "compatible_models": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::model.model",
+      "inversedBy": "products"
+    },
+    "sub_category": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::sub-category.sub-category",
+      "inversedBy": "products"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name",
+      "required": true
+    },
+    "price": {
+      "type": "integer",
+      "required": false,
+      "min": 0
+    },
+    "vendor_product_price_cents": {
+      "type": "integer",
+      "min": 0,
+      "required": true,
+      "private": true
+    }
+  }
+}
