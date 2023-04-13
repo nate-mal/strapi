@@ -14,18 +14,18 @@ module.exports = [
       },
     },
   },
+
   "strapi::cors",
   "strapi::poweredBy",
   "strapi::logger",
   "strapi::query",
-  "strapi::body",
-  "strapi::session",
-  "strapi::favicon",
-  "strapi::public",
   {
     name: "strapi::body",
     config: {
-      jsonLimit: "1000mb", // modify JSON body
+      jsonLimit: "15mb", // modify JSON body
     },
   },
+  "strapi::session",
+  "strapi::favicon",
+  "strapi::public",
 ];
