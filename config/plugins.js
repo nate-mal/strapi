@@ -34,8 +34,10 @@ module.exports = ({ env }) => ({
             discount: entry.discount,
             images_nr: entry.images_nr,
             slug: entry.slug,
-            sub_category: entry.sub_category.ro_name,
-            sub_category_id: entry.sub_category.id,
+            sub_category: entry.sub_category
+              ? entry.sub_category.ro_name
+              : null,
+            sub_category_id: entry.sub_category ? entry.sub_category.id : null,
             compatible_models: entry.compatible_models.map(
               (model) => model.name
             ),
