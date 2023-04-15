@@ -998,7 +998,7 @@ module.exports = {
                                                      > <a
                                                      href="${
                                                        product.slug
-                                                         ? ${process.env.CLIENT_URL}/products/${product.slug}`
+                                                         ? `${process.env.CLIENT_URL}/products/${product.slug}`
                                                          : `${process.env.CLIENT_URL}`
                                                      }"
                                                      rel="noopener"
