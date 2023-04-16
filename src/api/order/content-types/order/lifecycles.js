@@ -1008,7 +1008,7 @@ module.exports = {
                                                        <img
                                                          alt="${product.name}"
                                                          class="fullMobileWidth"
-                                                         src="${`${process.env.CLIENT_URL}/images/${product.art_id}/image-0.jpg}`}"
+                                                         src="${`${process.env.CLIENT_URL}/images/${product.art_id}/image-0.jpg`}"
                                                          sroc="https://i.postimg.cc/tCBC40k4/spa-product.png"
                                                          style="
                                                   display: block;
@@ -4149,7 +4149,7 @@ module.exports = {
                                                        <img
                                                          alt="${product.name}"
                                                          class="fullMobileWidth"
-                                                         src="${`${process.env.CLIENT_URL}/images/${product.art_id}/image-0.jpg}`}"
+                                                         src="${`${process.env.CLIENT_URL}/images/${product.art_id}/image-0.jpg`}"
                                                          sroc="https://i.postimg.cc/tCBC40k4/spa-product.png"
                                                          style="
                                                   display: block;
