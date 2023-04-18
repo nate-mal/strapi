@@ -2333,9 +2333,9 @@
     react-intl "6.3.2"
     yup "^0.32.9"
 
-"@strapi/plugin-graphql@^4.6.2":
+"@strapi/plugin-graphql@4.9.0 ":
   version "4.9.0"
-  resolved "https://registry.npmjs.org/@strapi/plugin-graphql/-/plugin-graphql-4.9.0.tgz"
+  resolved "https://registry.yarnpkg.com/@strapi/plugin-graphql/-/plugin-graphql-4.9.0.tgz#b152e6d9e267ad468232b44720bcfda9a2e0995b"
   integrity sha512-0HN2nTSZKnHtaYnlZxrIMEFarpbXPDo2+ki8uIe3HOs7V6rEp7QKTiVn5qRZdc/X+Zyv5AOUOZ27onsH0hazxg==
   dependencies:
     "@graphql-tools/schema" "8.5.1"
