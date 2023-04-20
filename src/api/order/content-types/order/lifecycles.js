@@ -1008,8 +1008,8 @@ module.exports = {
                                                        <img
                                                          alt="${product.name}"
                                                          class="fullMobileWidth"
-                                                         source="${`${process.env.CLIENT_URL}/images/${product.art_id}/image-0.jpg}`}"
-                                                         src="https://i.postimg.cc/tCBC40k4/spa-product.png"
+                                                         src="${`${process.env.CLIENT_URL}/images/${product.art_id}/image-0.jpg`}"
+                                                         sroc="https://i.postimg.cc/tCBC40k4/spa-product.png"
                                                          style="
                                                   display: block;
                                                   height: auto;
@@ -4149,8 +4149,8 @@ module.exports = {
                                                        <img
                                                          alt="${product.name}"
                                                          class="fullMobileWidth"
-                                                         source="${`${process.env.CLIENT_URL}/images/${product.art_id}/image-0.jpg}`}"
-                                                         src="https://i.postimg.cc/tCBC40k4/spa-product.png"
+                                                         src="${`${process.env.CLIENT_URL}/images/${product.art_id}/image-0.jpg`}"
+                                                         sroc="https://i.postimg.cc/tCBC40k4/spa-product.png"
                                                          style="
                                                   display: block;
                                                   height: auto;

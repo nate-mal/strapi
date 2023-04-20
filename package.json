@@ -10,16 +10,16 @@
     "strapi": "strapi"
   },
   "dependencies": {
+    "@strapi/plugin-graphql": "4.9.0 ",
     "@strapi/plugin-i18n": "4.9.0",
     "@strapi/plugin-users-permissions": "4.9.0 ",
-    "@strapi/strapi": "4.9.0 ",
     "@strapi/provider-email-nodemailer": "^4.8.2",
     "@strapi/provider-upload-cloudinary": "4.5.5",
+    "@strapi/strapi": "4.9.0 ",
     "@supercharge/strings": "^2.0.0",
     "pg": "8.8.0",
-    "@strapi/plugin-graphql": "^4.6.2",
-    "strapi-plugin-meilisearch": "^0.9.1",
     "strapi-plugin-import-export-entries": "^1.18.1",
+    "strapi-plugin-meilisearch": "^0.9.1",
     "stripe": "^11.15.0"
   },
   "author": {
