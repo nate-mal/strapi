@@ -201,7 +201,7 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
           data: {
             payment_status: "paid",
             discount: session.total_details.amount_discount
-              ? (session.total_details.amount_discount * 100) / session
+              ? session.total_details.amount_discount
               : null,
           },
         });
