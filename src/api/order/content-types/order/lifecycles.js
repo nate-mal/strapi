@@ -16,6 +16,7 @@ module.exports = {
       existing.status === "processing"
     ) {
       let total = 0;
+      const discount = existing.discount ? existing.discount : null;
       const shipping = existing.payment_method === "online" ? 0 : shipping_cost;
       const products = existing.products.map((item) => {
         const price = item.price_data.unit_amount;
