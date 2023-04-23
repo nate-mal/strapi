@@ -1668,10 +1668,11 @@ module.exports = {
                                                   /></span> ${
                                                     discount
                                                       ? ` (-${discount}%) ${(
-                                                          total -
-                                                          (total *
-                                                            (discount / 100)) /
-                                                            100
+                                                          (total -
+                                                            total *
+                                                              (discount /
+                                                                100)) /
+                                                          100
                                                         ).toFixed(2)}`
                                                       : ""
                                                   }
@@ -4826,10 +4827,10 @@ module.exports = {
                                                 /></span> ${
                                                   discount
                                                     ? ` (-${discount}%) ${(
-                                                        total -
-                                                        (total *
-                                                          (discount / 100)) /
-                                                          100
+                                                        (total -
+                                                          total *
+                                                            (discount / 100)) /
+                                                        100
                                                       ).toFixed(2)}`
                                                     : ""
                                                 }
