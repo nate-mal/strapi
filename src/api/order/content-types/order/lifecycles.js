@@ -1667,7 +1667,9 @@ module.exports = {
                                                     )} lei<br
                                                   /></span> ${
                                                     discount
-                                                      ? ` (-${discount} lei) ${(
+                                                      ? ` (-${(
+                                                          discount / 100
+                                                        ).toFixed(2)} lei) ${(
                                                           (total - discount) /
                                                           100
                                                         ).toFixed(2)}`
@@ -4826,7 +4828,9 @@ module.exports = {
                                                   )} lei<br
                                                 /></span> ${
                                                   discount
-                                                    ? ` (-${discount} lei) ${(
+                                                    ? ` (-${(
+                                                        discount / 100
+                                                      ).toFixed(2)} lei) ${(
                                                         (total - discount) /
                                                         100
                                                       ).toFixed(2)}`
