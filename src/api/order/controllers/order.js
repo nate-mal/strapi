@@ -187,6 +187,9 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
           data: {
             status: "confirmed",
             payment_status: "paid",
+            discount: session.total_details.amount_discount
+              ? session.total_details.amount_discount
+              : null,
           },
         });
         await strapi.query("api::order.order").update({
@@ -197,6 +200,9 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
           },
           data: {
             payment_status: "paid",
+            discount: session.total_details.amount_discount
+              ? session.total_details.amount_discount
+              : null,
           },
         });
         const newOrder = await strapi.query("api::order.order").findOne({

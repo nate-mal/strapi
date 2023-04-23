@@ -1656,11 +1656,22 @@ module.exports = {
                                                     mso-line-height-alt: 24px;
                                                   "
                                                 >
-                                                  <span style="font-size: 16px"
+                                                  <span style="font-size: 16px${
+                                                    discount &&
+                                                    ";text-decoration:line-through"
+                                                  }"
                                                     >${(total / 100).toFixed(
                                                       2
                                                     )} lei<br
-                                                  /></span>
+                                                  /></span> ${
+                                                    discount &&
+                                                    ` (-${discount}%) ${(
+                                                      total -
+                                                      (total *
+                                                        (discount / 100)) /
+                                                        100
+                                                    ).toFixed(2)}`
+                                                  }
                                                 </p>
                                               </div>
                                             </div>
@@ -2004,7 +2015,10 @@ module.exports = {
                                                     ><span style="font-size: 20px"
                                                       ><strong
                                                         >${(
-                                                          (total + shipping) /
+                                                          (total -
+                                                            total *
+                                                              (discount / 100) +
+                                                            shipping) /
                                                           100
                                                         ).toFixed(
                                                           2
@@ -3168,7 +3182,8 @@ module.exports = {
         const emailOptions = {
           to: sendToAdmin,
           subject: `Comandă nouă de la -> ${existing.name}, valoare: ${(
-            total / 100
+            (total - total * (discount / 100)) /
+            100
           ).toFixed(2)} lei, plată: ${existing.payment_method}`,
           html: `<!DOCTYPE html>
 
@@ -4797,11 +4812,21 @@ module.exports = {
                                                     mso-line-height-alt: 24px;
                                                   "
                                                 >
-                                                  <span style="font-size: 16px"
-                                                    >${(total / 100).toFixed(
-                                                      2
-                                                    )} lei<br
-                                                  /></span>
+                                                <span style="font-size: 16px${
+                                                  discount &&
+                                                  ";text-decoration:line-through"
+                                                }"
+                                                  >${(total / 100).toFixed(
+                                                    2
+                                                  )} lei<br
+                                                /></span> ${
+                                                  discount &&
+                                                  ` (-${discount}%) ${(
+                                                    total -
+                                                    (total * (discount / 100)) /
+                                                      100
+                                                  ).toFixed(2)}`
+                                                }
                                                 </p>
                                               </div>
                                             </div>
@@ -5145,7 +5170,10 @@ module.exports = {
                                                     ><span style="font-size: 20px"
                                                       ><strong
                                                         >${(
-                                                          (total + shipping) /
+                                                          (total -
+                                                            total *
+                                                              (discount / 100) +
+                                                            shipping) /
                                                           100
                                                         ).toFixed(
                                                           2
