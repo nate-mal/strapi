@@ -1658,20 +1658,22 @@ module.exports = {
                                                   "
                                                 >
                                                   <span style="font-size: 16px${
-                                                    discount &&
-                                                    ";text-decoration:line-through"
+                                                    discount
+                                                      ? ";text-decoration:line-through"
+                                                      : ""
                                                   }"
                                                     >${(total / 100).toFixed(
                                                       2
                                                     )} lei<br
                                                   /></span> ${
-                                                    discount &&
-                                                    ` (-${discount}%) ${(
-                                                      total -
-                                                      (total *
-                                                        (discount / 100)) /
-                                                        100
-                                                    ).toFixed(2)}`
+                                                    discount
+                                                      ? ` (-${discount}%) ${(
+                                                          total -
+                                                          (total *
+                                                            (discount / 100)) /
+                                                            100
+                                                        ).toFixed(2)}`
+                                                      : ""
                                                   }
                                                 </p>
                                               </div>
@@ -4814,19 +4816,22 @@ module.exports = {
                                                   "
                                                 >
                                                 <span style="font-size: 16px${
-                                                  discount &&
-                                                  ";text-decoration:line-through"
+                                                  discount
+                                                    ? ";text-decoration:line-through"
+                                                    : ""
                                                 }"
                                                   >${(total / 100).toFixed(
                                                     2
                                                   )} lei<br
                                                 /></span> ${
-                                                  discount &&
-                                                  ` (-${discount}%) ${(
-                                                    total -
-                                                    (total * (discount / 100)) /
-                                                      100
-                                                  ).toFixed(2)}`
+                                                  discount
+                                                    ? ` (-${discount}%) ${(
+                                                        total -
+                                                        (total *
+                                                          (discount / 100)) /
+                                                          100
+                                                      ).toFixed(2)}`
+                                                    : ""
                                                 }
                                                 </p>
                                               </div>
