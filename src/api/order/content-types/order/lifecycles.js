@@ -1667,11 +1667,8 @@ module.exports = {
                                                     )} lei<br
                                                   /></span> ${
                                                     discount
-                                                      ? ` (-${discount}%) ${(
-                                                          (total -
-                                                            total *
-                                                              (discount /
-                                                                100)) /
+                                                      ? ` (-${discount} lei) ${(
+                                                          (total - discount) /
                                                           100
                                                         ).toFixed(2)}`
                                                       : ""
@@ -2020,8 +2017,7 @@ module.exports = {
                                                       ><strong
                                                         >${(
                                                           (total -
-                                                            total *
-                                                              (discount / 100) +
+                                                            discount +
                                                             shipping) /
                                                           100
                                                         ).toFixed(
@@ -3186,9 +3182,13 @@ module.exports = {
         const emailOptions = {
           to: sendToAdmin,
           subject: `Comandă nouă de la -> ${existing.name}, valoare: ${(
-            (total - total * (discount / 100)) /
+            (total - discount) /
             100
-          ).toFixed(2)} lei, plată: ${existing.payment_method}`,
+          ).toFixed(2)} lei, ${
+            discount
+              ? `aplicat discount ${(discount / 100).toFixed(2)} lei`
+              : ""
+          } plată: ${existing.payment_method}`,
           html: `<!DOCTYPE html>
 
           <html
@@ -4826,10 +4826,8 @@ module.exports = {
                                                   )} lei<br
                                                 /></span> ${
                                                   discount
-                                                    ? ` (-${discount}%) ${(
-                                                        (total -
-                                                          total *
-                                                            (discount / 100)) /
+                                                    ? ` (-${discount} lei) ${(
+                                                        (total - discount) /
                                                         100
                                                       ).toFixed(2)}`
                                                     : ""
@@ -5178,8 +5176,7 @@ module.exports = {
                                                       ><strong
                                                         >${(
                                                           (total -
-                                                            total *
-                                                              (discount / 100) +
+                                                            discount +
                                                             shipping) /
                                                           100
                                                         ).toFixed(

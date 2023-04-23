@@ -43,9 +43,9 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
                 vendor_delivery: item.vendor_product_delivery_info,
               },
               unit_amount: Math.round(
-                item.price - item.price * (item.discount / 100)
+                item.price - Math.ceil(item.price * (item.discount / 100))
               ),
-              applied_discount: item.discount,
+              applied_discount: Math.ceil(item.price * (item.discount / 100)),
             },
             quantity: product.amount,
           };
@@ -188,10 +188,7 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
             status: "confirmed",
             payment_status: "paid",
             discount: session.total_details.amount_discount
-              ? Math.ceil(
-                  (session.total_details.amount_discount * 100) /
-                    session.amount_subtotal
-                )
+              ? session.total_details.amount_discount
               : null,
           },
         });
@@ -204,10 +201,7 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
           data: {
             payment_status: "paid",
             discount: session.total_details.amount_discount
-              ? Math.ceil(
-                  (session.total_details.amount_discount * 100) /
-                    session.amount_subtotal
-                )
+              ? (session.total_details.amount_discount * 100) / session
               : null,
           },
         });
