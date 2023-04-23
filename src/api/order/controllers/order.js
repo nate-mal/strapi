@@ -42,7 +42,10 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
                 delivery: item.delivery_time,
                 vendor_delivery: item.vendor_product_delivery_info,
               },
-              unit_amount: Math.round(item.price),
+              unit_amount: Math.round(
+                item.price - item.price * (item.discount / 100)
+              ),
+              applied_discount: item.discount,
             },
             quantity: product.amount,
           };
@@ -295,3 +298,4 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
     }
   },
 }));
+// https://checkout.stripe.com/c/pay/cs_test_b1XUaoQBGBGryeWTHenNwXp7kb6dF1iZ9TRg0mjKaGRsX9ZxV1bm9B24Bn#fidkdWxOYHwnPyd1blpxYHZxWjA0SGpQbmNHVWlmN20wcnZ1f11wRmhJf0pcYVdcSnFOVXUyUjY9bn9EN1ZkdHdkTWQybDVsN1JjckN8dVc2N3NDU0FSYT19ZzdDUEtXb0xmY0REXElgclx0NTUzaEZtUjZRMCcpJ2hsYXYnP34nYnBsYSc%2FJ2ZhZzYzMTYzKDdhY2AoMWQxYyg9Y2QzKDQyY2NgZDI2NzE0YTRnN2M9NicpJ2hwbGEnPydnNDw9N2Q8Zig1Mzc9KDE0N2MoZGRhZCg3ZDZmZzYwPTQ9NjRkZGNjZGYnKSd2bGEnPydjNDVgMjdjMihjPWM1KDEwMTIoZzRnYyhkNzJhYTw2Zj00ZGFmY2E1NDIneCknZ2BxZHYnP15YKSdpZHxqcHFRfHVgJz8naHBpcWxabHFgaCcpJ3dgY2B3d2B3SndsYmxrJz8nbXFxdXY%2FKipycnIrZHdxZmRjYCt2cWp3YCd4JSUl
