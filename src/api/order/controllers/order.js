@@ -188,7 +188,10 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
             status: "confirmed",
             payment_status: "paid",
             discount: session.total_details.amount_discount
-              ? session.total_details.amount_discount
+              ? Math.ceil(
+                  (session.total_details.amount_discount * 100) /
+                    session.amount_subtotal
+                )
               : null,
           },
         });
@@ -201,7 +204,10 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
           data: {
             payment_status: "paid",
             discount: session.total_details.amount_discount
-              ? session.total_details.amount_discount
+              ? Math.ceil(
+                  (session.total_details.amount_discount * 100) /
+                    session.amount_subtotal
+                )
               : null,
           },
         });
