@@ -308,7 +308,6 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
       const entries = await strapi.entityService.findMany(
         "api::discount.discount",
         {
-          fields: ["name", "percentage"],
           sort: { createdAt: "DESC" },
           populate: { sub_categories: true },
         }
