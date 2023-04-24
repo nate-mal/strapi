@@ -36,6 +36,11 @@ const myExtraRoutes = [
     path: "/location",
     handler: "api::order.order.location",
   },
+  {
+    method: "GET",
+    path: "/alldiscounts",
+    handler: "api::order.order.getDiscounts",
+  },
 ];
 
 module.exports = customRouter(defaultRouter, myExtraRoutes);
