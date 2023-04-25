@@ -27,6 +27,7 @@
     "availability": {
       "type": "enumeration",
       "enum": [
+        "in-stock-in",
         "in-stock-ex",
         "sold-out",
         "on-demand",
@@ -107,6 +108,10 @@
       "min": 0,
       "required": true,
       "private": true
+    },
+    "stock_amount": {
+      "type": "integer",
+      "min": 0
     }
   }
 }

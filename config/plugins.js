@@ -20,7 +20,7 @@ module.exports = ({ env }) => ({
   },
   graphql: {
     config: {
-      endpoint: '/graphql',
+      endpoint: "/graphql",
       shadowCRUD: true,
       playgroundAlways: true,
       depthLimit: 25,
@@ -41,6 +41,7 @@ module.exports = ({ env }) => ({
             name: entry.name,
             description: entry.description,
             availability: entry.availability,
+            stock_amount: entry.stock_amount,
             delivery_time: entry.delivery_time,
             price: entry.price,
             discount: entry.discount,
