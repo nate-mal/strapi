@@ -23,11 +23,58 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
       const checkout_session =
         new Date().toLocaleDateString("ro-RO") + "_" + Str.random(100);
 
+      const discounts = await strapi
+        .controller("api::order.order")
+        .getDiscounts();
+      const getDiscountPercentage = (
+        subCategoryId,
+        subCategoryRoName,
+        discounts
+      ) => {
+        let filteredDiscounts = [];
+        for (let i = 0; i < discounts.length; i++) {
+          let discount = discounts[i];
+          for (let j = 0; j < discount.sub_categories.length; j++) {
+            let subCategory = discount.sub_categories[j];
+            if (
+              subCategory.id === subCategoryId ||
+              subCategory.ro_name === subCategoryRoName
+            ) {
+              filteredDiscounts.push(discount);
+              break;
+            }
+          }
+        }
+
+        if (filteredDiscounts.length === 0) {
+          return null;
+        }
+
+        // filteredDiscounts.sort(function (a, b) {
+        //   return new Date(b.createdAt) - new Date(a.createdAt);
+        // });
+
+        return filteredDiscounts[0].percentage;
+      };
+
       const productsInfo = await Promise.all(
         products.map(async (product) => {
-          const item = await strapi
-            .service("api::product.product")
-            .findOne(product.item.id);
+          const item = await strapi.query("api::product.product").findOne({
+            // uid syntax: 'api::api-name.content-type-name'
+            where: {
+              id: product.item.id,
+            },
+            // select: ["id", "vendor_product_location"],
+            populate: { sub_category: true },
+          });
+
+          const discount =
+            item.discount ||
+            getDiscountPercentage(
+              item.sub_category.id,
+              item.sub_category.ro_name,
+              discounts
+            );
 
           return {
             price_data: {
@@ -43,9 +90,9 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
                 vendor_delivery: item.vendor_product_delivery_info,
               },
               unit_amount: Math.round(
-                item.price - Math.ceil(item.price * (item.discount / 100))
+                item.price - Math.ceil(item.price * (discount / 100))
               ),
-              applied_discount: Math.ceil(item.price * (item.discount / 100)),
+              applied_discount: Math.ceil(item.price * (discount / 100)),
             },
             quantity: product.amount,
           };
@@ -54,9 +101,6 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
 
       if (payment_method === "online") {
         const lineItems = productsInfo.map((item) => {
-          console.log(
-            `${process.env.CLIENT_URL}/images/${item.price_data.product_data.art_id}/image-0.jpg`
-          );
           return {
             price_data: {
               currency: "ron",
@@ -171,9 +215,7 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
   async confirm(ctx) {
     const { checkout_session, stripeId } = ctx.request.body;
     if (stripeId && stripeId !== "") {
-      console.log("checkout_session", checkout_session);
       const session = await stripe.checkout.sessions.retrieve(stripeId);
-      console.log("verify session", session);
 
       if (session.payment_status === "paid") {
         //Update order
@@ -231,7 +273,6 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
         );
       }
     } else {
-      console.log("checkout_session", checkout_session);
       //Update order
       await strapi.query("api::order.order").update({
         // uid syntax: 'api::api-name.content-type-name'
