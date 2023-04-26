@@ -1,5 +1,8 @@
 ("use strict");
 const stripe = require("stripe")(process.env.STRIPE_KEY);
+const shipping_tax = process.env.SHIPPING_TAX || 2999;
+const min_free_shipping = process.env.MIN_FREE_SHIPPING || 40000;
+console.log(min_free_shipping);
 const { Str } = require("@supercharge/strings");
 /**
  * order controller
@@ -98,7 +101,10 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
           };
         })
       );
-
+      const sub_total = productsInfo.reduce(
+        (total, item) => total + item.price_data.unit_amount * item.quantity,
+        0
+      );
       if (payment_method === "online") {
         const lineItems = productsInfo.map((item) => {
           return {
@@ -135,7 +141,10 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
             {
               shipping_rate_data: {
                 type: "fixed_amount",
-                fixed_amount: { amount: 0, currency: "ron" },
+                fixed_amount: {
+                  amount: sub_total < min_free_shipping ? shipping_tax : 0,
+                  currency: "ron",
+                },
                 display_name: address,
                 delivery_estimate: {
                   minimum: { unit: "business_day", value: 5 },
@@ -197,7 +206,7 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
           success_url:
             process.env.CLIENT_URL +
             `/checkout/success?session=${checkout_session}`,
-          shipping_tax: 2999,
+          shipping_tax: sub_total < min_free_shipping ? shipping_tax : 0,
           payment_method: "cashondelivery",
           name,
           email,
