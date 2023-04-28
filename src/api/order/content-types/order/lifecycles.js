@@ -1,4 +1,5 @@
-const shipping_cost = 2999;
+const shipping_tax = parseInt(process.env.SHIPPING_TAX) || 2999;
+const min_free_shipping = parseInt(process.env.MIN_FREE_SHIPPING) || 40000;
 
 module.exports = {
   async beforeUpdate(event) {
@@ -17,7 +18,7 @@ module.exports = {
     ) {
       let total = 0;
       const discount = data.discount ? data.discount : null;
-      const shipping = existing.payment_method === "online" ? 0 : shipping_cost;
+
       const products = existing.products.map((item) => {
         const price = item.price_data.unit_amount;
         const art_id = item.price_data.product_data.art_id;
@@ -34,6 +35,7 @@ module.exports = {
           location,
         };
       });
+      const shipping = total < min_free_shipping ? shipping_tax : 0;
       // trimite email confirmare la client
       const sendToClient = existing.email;
       strapi.log.debug(`Trying to send an email to ${existing.name}`);
@@ -1175,6 +1177,17 @@ module.exports = {
                                                    </td>
                                                  </tr>
                                                </table>
+                                               <table class="paragraph_block block-4" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;" width="100%" cellspacing="0" cellpadding="10" border="0">
+                                               <tbody><tr>
+                                                 <td class="pad">
+                                                    <div style="color:#101112;direction:ltr;font-family:Arial, Helvetica Neue, Helvetica, sans-serif;font-size:16px;font-weight:400;letter-spacing:0px;line-height:120%;text-align:left;mso-line-height-alt:19.2px;">
+                                                   <p style="margin: 0;"><strong>Număr articol: ${
+                                                     product.art_id
+                                                   }</strong></p>
+                                                      </div>
+                                                         </td>
+                                                             </tr>
+                                                          </tbody></table>
                                                <table class="paragraph_block block-4" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;" width="100%" cellspacing="0" cellpadding="10" border="0">
 														                         <tbody><tr>
 															                         <td class="pad">
@@ -4336,6 +4349,17 @@ module.exports = {
                                                    </td>
                                                  </tr>
                                                </table>
+                                               <table class="paragraph_block block-4" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;" width="100%" cellspacing="0" cellpadding="10" border="0">
+                                               <tbody><tr>
+                                                 <td class="pad">
+                                                    <div style="color:#101112;direction:ltr;font-family:Arial, Helvetica Neue, Helvetica, sans-serif;font-size:16px;font-weight:400;letter-spacing:0px;line-height:120%;text-align:left;mso-line-height-alt:19.2px;">
+                                                   <p style="margin: 0;"><strong>Număr articol: ${
+                                                     product.art_id
+                                                   }</strong></p>
+                                                      </div>
+                                                         </td>
+                                                             </tr>
+                                                          </tbody></table>
                                                <table class="paragraph_block block-4" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;" width="100%" cellspacing="0" cellpadding="10" border="0">
 														                         <tbody><tr>
 															                         <td class="pad">

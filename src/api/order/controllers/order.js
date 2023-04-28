@@ -1,7 +1,7 @@
 ("use strict");
 const stripe = require("stripe")(process.env.STRIPE_KEY);
-const shipping_tax = process.env.SHIPPING_TAX || 2999;
-const min_free_shipping = process.env.MIN_FREE_SHIPPING || 40000;
+const shipping_tax = parseInt(process.env.SHIPPING_TAX) || 2999;
+const min_free_shipping = parseInt(process.env.MIN_FREE_SHIPPING) || 40000;
 console.log(min_free_shipping);
 const { Str } = require("@supercharge/strings");
 /**
