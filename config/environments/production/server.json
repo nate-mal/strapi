@@ -1,19 +1,30 @@
 {
   "host": "0.0.0.0",
-  "port": 1337,
-  "autoReload": {
-    "enabled": true
+  "port": "${PORT || 1337}",
+  "production": true,
+  "proxy": {
+    "enabled": false
+  },
+  "url": "${STRAPI_URL}",
+  "admin": {
+    "autoOpen": false
   },
   "cron": {
     "enabled": false
   },
-  "admin": {
-    "path": "/",
-    "build": {
-      "host": "/",
-      "backend": "${process.env.STRAPI_URL}",
-      "plugins": {
-        "source": "backend"
+  "database": {
+    "client": "postgres",
+    "host": "${PGHOST}",
+    "port": "${PGPORT || 5432}",
+    "database": "${PGDATABASE}",
+    "username": "${PGUSER}",
+    "password": "${PGPASSWORD}",
+    "ssl": "${DATABASE_SSL || true}"
+  },
+  "middlewares": {
+    "settings": {
+      "cors": {
+        "enabled": true
       }
     }
   }
