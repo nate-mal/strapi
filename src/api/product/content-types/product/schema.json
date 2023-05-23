@@ -112,6 +112,16 @@
     "stock_amount": {
       "type": "integer",
       "min": 0
+    },
+    "images": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
     }
   }
 }
