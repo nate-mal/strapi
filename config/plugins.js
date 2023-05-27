@@ -58,6 +58,14 @@ module.exports = ({ env }) => ({
               entry.compatible_models.length > 0
                 ? entry.compatible_models.map((model) => model.id)
                 : ["universal"],
+            images:
+              entry.images.length > 0
+                ? entry.images.map((im) => ({
+                    url: im.url,
+                    id: im.provider_metadata.public_id,
+                    provider: im.provider,
+                  }))
+                : [],
           };
         },
       },
