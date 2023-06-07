@@ -114,11 +114,16 @@
       "min": 0
     },
     "images": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
       "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
+        "images"
+      ]
+    },
+    "pictures": {
+      "allowedTypes": [
+        "images"
       ],
       "type": "media",
       "multiple": true

@@ -14,6 +14,7 @@
     "@strapi/plugin-i18n": "4.9.0",
     "@strapi/plugin-users-permissions": "4.9.0 ",
     "@strapi/provider-email-nodemailer": "^4.8.2",
+    "@strapi/provider-upload-aws-s3": "^4.10.7",
     "@strapi/provider-upload-cloudinary": "4.5.5",
     "@strapi/strapi": "4.9.0 ",
     "@supercharge/strings": "^2.0.0",
