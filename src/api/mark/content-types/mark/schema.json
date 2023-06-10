@@ -4,7 +4,8 @@
   "info": {
     "singularName": "mark",
     "pluralName": "marks",
-    "displayName": "Mark"
+    "displayName": "Mark",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -21,6 +22,14 @@
       "relation": "oneToMany",
       "target": "api::model.model",
       "mappedBy": "mark"
+    },
+    "picture": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
     }
   }
 }
