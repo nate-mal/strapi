@@ -59,6 +59,7 @@ module.exports = ({ env }) => ({
       product: {
         transformEntry({ entry }) {
           // can also be async
+          console.log(entry.pictures);
           return {
             id: entry.id,
             art_id: entry.art_id,
@@ -82,11 +83,21 @@ module.exports = ({ env }) => ({
               entry.compatible_models.length > 0
                 ? entry.compatible_models.map((model) => model.id)
                 : ["universal"],
-            images:
-              entry.images.length > 0
-                ? entry.images.map((im) => ({
+            // images:
+            //  entry.images && entry.images.length > 0
+            //     ? entry.images.map((im) => ({
+            //         url: im.url,
+            //         id: im.provider_metadata.public_id,
+            //         provider: im.provider,
+            //       }))
+            //     : [],
+                pictures:
+              entry.pictures && entry.pictures.length > 0
+                ? entry.pictures.map((im) => ({
                     url: im.url,
-                    id: im.provider_metadata.public_id,
+                    id: im.hash,
+                    thumbnail_url:im.formats.thumbnail.url,
+                    thumbnail_id:im.formats.thumbnail.hash,
                     provider: im.provider,
                   }))
                 : [],
