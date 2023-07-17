@@ -71,7 +71,7 @@ Here's an example `.env` file:
 ```
 # keys for strapi (read strapi docs)
 HOST=0.0.0.0
-PORT=1338
+PORT=1337
 APP_KEYS=app_keys(4>)
 API_TOKEN_SALT=app_key
 ADMIN_JWT_SECRET=your_jwt_key
